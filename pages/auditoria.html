@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/auditoria.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Boldonse&family=Caveat:wght@400..700&family=Iosevka+Charon:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="div-logo"><a class="logo" href="./index.html">LOGO</a></div>
+      <nav class="header-nav">
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="./prestadores.html">Prestadores</a></li>
+          <li><a href="./planes.html">Planes</a></li>
+          <li><a href="./calculadora.html">Calculadora</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="panel-control">
+        <h2>Auditoria Medica</h2>
+        <div class="campo">
+          <label for="periodo">Periodo:</label>
+          <input
+            type="month"
+            id="periodo"
+            name="periodo"
+            placeholder="Ingrese el periodo a auditar"
+          />
+        </div>
+
+        <div class="campo">
+          <label class="upload-btn" for="facturacion">Facturacion:</label>
+          <input
+            class="btn"
+            type="file"
+            id="facturacion"
+            name="facturacion"
+            placeholder="Ingrese la facturacion a auditar"
+          />
+
+          <label class="upload-btn" for="padron-afiliado"
+            >Padron afiliados:</label
+          >
+          <input
+            class="btn archivo-nombre"
+            type="file"
+            id="padron-afiliado"
+            name="padron-afiliado"
+            placeholder="Ingrese el padron de afiliados"
+          />
+        </div>
+
+        <div class="acciones">
+          <button class="btn" type="submit" id="btn-auditar">Auditar</button>
+        </div>
+      </section>
+
+      <section class="resumen">
+        <h2>Resumen de Auditoria</h2>
+        <button class="btn" id="btn-debitos" class="btn-debitos">
+          Generar debitos
+        </button>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Afiliado</th>
+
+              <th>Profesional</th>
+
+              <th>Categoría</th>
+
+              <th>Código</th>
+
+              <th>Error detectado</th>
+
+              <th>Facturado</th>
+
+              <th>Correcto</th>
+
+              <th>Débito</th>
+            </tr>
+          </thead>
+
+          <tbody id="tabla-errores"></tbody>
+        </table>
+      </section>
+
+      <!-- ----------------------------------------------------------------------- -->
+      <!--                           planilla de debitos                           -->
+      <!-- ----------------------------------------------------------------------- -->
+
+      <section class="planilla-debitos">
+        <h2>Planilla de Débitos</h2>
+
+        <button class="btn" id="btn-exportar">Exportar Excel</button>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Profesional</th>
+
+              <th>Matrícula</th>
+
+              <th>Categoría</th>
+
+              <th>Afiliado</th>
+
+              <th>Plan</th>
+
+              <th>Código</th>
+
+              <th>Práctica</th>
+
+              <th>Honorarios</th>
+
+              <th>Gastos</th>
+
+              <th>H + G</th>
+            </tr>
+          </thead>
+
+          <tbody id="tabla-debitos">
+            <!--
+          SE COMPLETA AUTOMÁTICAMENTE
+          AL GENERAR DÉBITOS
+        -->
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td colspan="9">Total Débitos</td>
+
+              <td id="total-debitos">$0</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+    </main>
+    <footer class="pie-de-pagina">
+      <a href="./components/footer.html">Primedic Salud</a>
+    </footer>
+  </body>
+</html>

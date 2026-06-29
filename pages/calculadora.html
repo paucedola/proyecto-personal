@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/calculadora.css" />
+  </head>
+  <body>
+    <header>
+      <div class="div-logo"><a class="logo" href="./index.html">LOGO</a></div>
+      <nav class="header-nav">
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="./prestadores.html">Prestadores</a></li>
+          <li><a href="./planes.html">Planes</a></li>
+          <li><a href="./calculadora.html">Calculadora</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Calculadora de Prestaciones</h1>
+
+      <section class="datos">
+        <div class="campo">
+          <label>Código</label>
+          <input type="text" id="codigo" />
+        </div>
+
+        <button id="btn-buscar">Buscar</button>
+
+        <div class="campo">
+          <label>Fecha</label>
+          <input type="date" />
+        </div>
+
+        <div class="campo">
+          <label>Descripción</label>
+          <input type="text" id="descripcion" readonly />
+        </div>
+      </section>
+
+      <section>
+        <table border="1">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Categoria A</th>
+              <th>Categoria B</th>
+              <th>Categoria C</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Honorarios</td>
+              <td id="honorario-a"></td>
+              <td id="honorario-b"></td>
+              <td id="honorario-c"></td>
+            </tr>
+
+            <tr>
+              <td>Gastos</td>
+              <td id="gastos-a"></td>
+              <td id="gastos-b"></td>
+              <td id="gastos-c"></td>
+            </tr>
+
+            <tr>
+              <td>Ayudantes</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>Anestesistas</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>Cantidad de ayudantes</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>Honorarios - Gastos</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <br />
+      </section>
+    </main>
+
+    <footer class="pie-de-pagina">
+      <a href="../index2.html">Volver al inicio</a>
+    </footer>
+
+    <script src="../js/calculadora.js"></script>
+  </body>
+</html>

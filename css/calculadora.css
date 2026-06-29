@@ -1,0 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.6rem;
+  background: #ccdbf9;
+  color: rgb(15, 15, 14);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+  padding-bottom: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+}
+
+header,
+footer {
+  background: #7eb2f1;
+  color: aliceblue;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div-logo {
+  margin-left: 2rem;
+  font-weight: bold;
+}
+
+.logo,
+.header-nav ul li a {
+  text-decoration: none;
+  font-size: 2rem;
+  color: inherit;
+  display: inline-block;
+  padding: 2rem;
+}
+
+.header-nav ul,
+footer {
+  text-align: right;
+  list-style: none;
+  display: flex;
+  gap: 2rem; /*separar entre los hijitos cuando son libres*/
+}
+
+h1 {
+  color: rgb(21, 21, 22);
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.15rem;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+/* CONTENEDOR */
+section {
+  width: 80%;
+  margin: 2rem auto;
+}
+
+/* CONTENEDOR */
+.datos {
+  width: 80%;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* POSICIONAMIENTO */
+.codigo {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.descripcion {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.fecha {
+  grid-column: 2;
+  grid-row: 1 / 3; /* 🔥 ocupa las dos filas */
+}
+
+/* ESTILO CAMPOS */
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.campo input {
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+/* FOCUS */
+.campo input:focus {
+  outline: none;
+  border-color: #3c7ac1;
+}
+
+/* TABLA */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1.4rem;
+}
+
+/* CABECERA */
+th {
+  background: #3c7ac1;
+  color: white;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+/* CELDAS */
+td {
+  padding: 1.2rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+/* PRIMER COLUMNA (etiquetas) */
+td:first-child {
+  text-align: left;
+  font-weight: bold;
+}
+
+/* FILAS ALTERNADAS */
+tr:nth-child(even) {
+  background-color: #f5f9ff;
+}
+
+/* HOVER */
+tr:hover {
+  background-color: #eaf3ff;
+  transition: 0.2s;
+}
+
+@media (max-width: 768px) {
+  .contenedor-prestadores {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pie-de-pagina {
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+}
