@@ -3,12 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Calculadora de Prestaciones</title>
     <link rel="stylesheet" href="../css/calculadora.css" />
   </head>
+
   <body>
     <header>
-      <div class="div-logo"><a class="logo" href="./index.html">LOGO</a></div>
+      <div class="div-logo">
+        <a class="logo" href="../index.html">LOGO</a>
+      </div>
+
       <nav class="header-nav">
         <ul>
           <li><a href="../index.html">Inicio</a></li>
@@ -18,27 +22,59 @@
         </ul>
       </nav>
     </header>
+
     <main>
       <h1>Calculadora de Prestaciones</h1>
 
       <section class="datos">
+
+        <!-- Nomenclador -->
         <div class="campo">
-          <label>Código</label>
+          <label for="nomenclador">Nomenclador</label>
+          <input
+            type="file"
+            id="nomenclador"
+            accept=".xlsx,.xls"
+          />
+        </div>
+
+        <!-- Valores del galeno -->
+        <div class="campo">
+          <label for="valores">Valores del Galeno</label>
+          <input
+            type="file"
+            id="valores"
+            accept=".xlsx,.xls"
+          />
+        </div>
+
+        <!-- Código -->
+        <div class="campo">
+          <label for="codigo">Código</label>
           <input type="text" id="codigo" />
-          <input type="file" id="facturacion" accept=".xlsx,.xls">
         </div>
 
-        <button id="btn-buscar">Buscar</button>
-
+        <!-- Fecha -->
         <div class="campo">
-          <label>Fecha</label>
-          <input type="date" />
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha" />
         </div>
 
+        <!-- Botón -->
         <div class="campo">
-          <label>Descripción</label>
-          <input type="text" id="descripcion" readonly />
+          <button id="btn-buscar">Buscar</button>
         </div>
+
+        <!-- Descripción -->
+        <div class="campo">
+          <label for="descripcion">Descripción</label>
+          <input
+            type="text"
+            id="descripcion"
+            readonly
+          />
+        </div>
+
       </section>
 
       <section>
@@ -46,9 +82,9 @@
           <thead>
             <tr>
               <th></th>
-              <th>Categoria A</th>
-              <th>Categoria B</th>
-              <th>Categoria C</th>
+              <th>Categoría A</th>
+              <th>Categoría B</th>
+              <th>Categoría C</th>
             </tr>
           </thead>
 
@@ -69,44 +105,41 @@
 
             <tr>
               <td>Ayudantes</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td id="ayudante-a"></td>
+              <td id="ayudante-b"></td>
+              <td id="ayudante-c"></td>
             </tr>
 
             <tr>
               <td>Anestesistas</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td id="anestesista-a"></td>
+              <td id="anestesista-b"></td>
+              <td id="anestesista-c"></td>
             </tr>
 
             <tr>
               <td>Cantidad de ayudantes</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td id="cant-ayudantes-a"></td>
+              <td id="cant-ayudantes-b"></td>
+              <td id="cant-ayudantes-c"></td>
             </tr>
 
             <tr>
-              <td>Honorarios - Gastos</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>Honorarios + Gastos</td>
+              <td id="total-a"></td>
+              <td id="total-b"></td>
+              <td id="total-c"></td>
             </tr>
           </tbody>
         </table>
-
-        <br />
       </section>
     </main>
 
     <footer class="pie-de-pagina">
-      <a href="../index2.html">Volver al inicio</a>
+      <a href="../index.html">Volver al inicio</a>
     </footer>
 
-   <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-
-<script src="../js/calculadora.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script src="../js/calculadora.js"></script>
   </body>
 </html>
