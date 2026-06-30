@@ -7,6 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const btnBuscar = document.getElementById("btn-buscar");
 
   const inputCodigo = document.getElementById("codigo");
+  const inputFecha = document.getElementById("fecha");
   const boxSugerencias = document.getElementById("sugerencias");
 
   // ============================
@@ -94,7 +95,15 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const codigo = document.getElementById("codigo").value.trim();
+    const codigo = inputCodigo.value.trim();
+    const fechaValue = inputFecha.value;
+
+    if (!fechaValue) {
+      alert("Seleccioná una fecha.");
+      return;
+    }
+
+    const fecha = new Date(fechaValue);
 
     const item = nomenclador.find(
       (d) => String(d["Código"]) === codigo
@@ -105,10 +114,19 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 🔎 buscar valor asociado
-    const valorItem = valores.find(
-      (v) => String(v["Código"]) === codigo
-    );
+    // ============================
+    // 🔎 buscar valor por código + vigencia
+    // ============================
+    const valorItem = valores.find((v) => {
+      const desde = new Date(v["Desde"]);
+      const hasta = new Date(v["Hasta"]);
+
+      return (
+        String(v["Código"]) === codigo &&
+        desde <= fecha &&
+        hasta >= fecha
+      );
+    });
 
     const valorBase = valorItem ? Number(valorItem["Valor"]) : 0;
 
