@@ -50,51 +50,72 @@ window.addEventListener("DOMContentLoaded", () => {
   // BUSCAR PRESTACIÓN
   // ============================
   btnBuscar.addEventListener("click", () => {
-    if (nomenclador.length === 0) {
-      alert("Primero cargá el nomenclador.");
-      return;
-    }
+  if (nomenclador.length === 0) {
+    alert("Primero cargá el nomenclador.");
+    return;
+  }
 
-    if (valores.length === 0) {
-      alert("Primero cargá la tabla de valores.");
-      return;
-    }
+  if (valores.length === 0) {
+    alert("Primero cargá la tabla de valores.");
+    return;
+  }
 
-    const codigo = document.getElementById("codigo").value.trim();
+  const codigo = document.getElementById("codigo").value.trim();
 
-    const item = nomenclador.find(
-      (d) => String(d["Código"]) === codigo
-    );
+  const item = nomenclador.find(
+    (d) => String(d["Código"]) === codigo
+  );
 
-    if (!item) {
-      alert("Código no encontrado.");
-      return;
-    }
+  if (!item) {
+    alert("Código no encontrado.");
+    return;
+  }
 
-    // ============================
-    // MOSTRAR DESCRIPCIÓN (INPUT)
-    // ============================
-    document.getElementById("descripcion").value =
-      item["Descripción"];
+  // 🔎 buscar valor asociado
+  const valorItem = valores.find(
+    (v) => String(v["Código"]) === codigo
+  );
 
-    // ============================
-    // MOSTRAR INFO EN PANEL
-    // ============================
-    document.getElementById("info-descripcion").textContent =
-      item["Descripción"];
+  const valor = valorItem ? valorItem["Valor"] : "Sin valor";
 
-    document.getElementById("info-forma").textContent =
-      item["Forma Fact."];
+  // ============================
+  // INPUT DESCRIPCIÓN
+  // ============================
+  document.getElementById("descripcion").value =
+    item["Descripción"];
 
-    document.getElementById("info-pedido").textContent =
-      item["Pedido."];
+  // ============================
+  // PANEL INFO
+  // ============================
+  document.getElementById("info-descripcion").textContent =
+    item["Descripción"];
 
-    document.getElementById("info-informe").textContent =
-      item["Informe."];
+  document.getElementById("info-forma").textContent =
+    item["Forma Fact."];
 
-    document.getElementById("info-cantidad").textContent =
-      item["Cant. Ayu."];
+  document.getElementById("info-pedido").textContent =
+    item["Pedido."];
 
+  document.getElementById("info-informe").textContent =
+    item["Informe."];
+
+  document.getElementById("info-cantidad").textContent =
+    item["Cant. Ayu."];
+
+  // ============================
+  // NUEVO: VALOR DE LA PRÁCTICA
+  // ============================
+  console.log("Valor encontrado:", valor);
+
+  // (opcional: mostrarlo en pantalla)
+  if (!document.getElementById("info-valor")) {
+    const p = document.createElement("p");
+    p.innerHTML = `<strong>Valor:</strong> <span id="info-valor"></span>`;
+    document.querySelector(".info-practica").appendChild(p);
+  }
+
+  document.getElementById("info-valor").textContent = valor;
+});
     // ============================
     // DEBUG
     // ============================
