@@ -1,0 +1,61 @@
+[
+  {
+    "nombre": "Circulo Medico Chascomús",
+    "link": "./calculadora.html"
+  },
+
+  {
+    "nombre": "Hospital Italiano",
+    "link": "./planes.html"
+  },
+
+  {
+    "nombre": "Agremiación Medica de Berisso",
+    "link": "./auditoria.html"
+  },
+
+  {
+    "nombre": "Hospital Diagnostico - IMP - Clinica del Niño",
+    "link": "./planes.html"
+  },
+
+  {
+    "nombre": "Hospital San Jose de Villa Elisa",
+    "link": "./planes.htm"
+  },
+
+  {
+    "nombre": "Clinica de la Rivera",
+    "link": "./planes.htm"
+  },
+
+  {
+    "nombre": "Clinica Mosconi",
+    "link": "./planes.htm"
+  },
+
+  {
+    "nombre": "Sanatorio Argentino",
+    "link": "./planes.htm"
+  },
+
+  {
+    "nombre": "Clinica Brandsen",
+    "link": "./planes.htm"
+  },
+
+  {
+    "nombre": "Hospital Español",
+    "link": "./planes.htm"
+  },
+
+  {
+    "nombre": "Sanatorio los tilos",
+    "link": "./planes.htm"
+  },
+
+  {
+    "nombre": "Instituto Central de Medicina",
+    "link": "./planes.htm"
+  }
+]
