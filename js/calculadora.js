@@ -1,18 +1,27 @@
 let datos = [];
 
 window.addEventListener("DOMContentLoaded", () => {
+  // Elementos del HTML
   const inputFile = document.getElementById("facturacion");
+  const btnBuscar = document.getElementById("btn-buscar");
 
+  // ============================
+  // CARGAR EXCEL
+  // ============================
   inputFile.addEventListener("change", (e) => {
     const file = e.target.files[0];
 
+    // Si el usuario cancela la selección
     if (!file) return;
 
     const reader = new FileReader();
 
     reader.onload = (event) => {
       const data = new Uint8Array(event.target.result);
-      const workbook = XLSX.read(data, { type: "array" });
+
+      const workbook = XLSX.read(data, {
+        type: "array",
+      });
 
       const hoja = workbook.Sheets[workbook.SheetNames[0]];
 
@@ -24,16 +33,28 @@ window.addEventListener("DOMContentLoaded", () => {
     reader.readAsArrayBuffer(file);
   });
 
-  document.getElementById("btn-buscar").addEventListener("click", () => {
-    const codigo = document.getElementById("codigo").value;
-
-    const item = datos.find((d) => d.codigo == codigo);
-
-    if (!item) {
-      alert("Código no encontrado");
+  // ============================
+  // BUSCAR PRESTACIÓN
+  // ============================
+  btnBuscar.addEventListener("click", () => {
+    // Verifica que se haya cargado un Excel
+    if (datos.length === 0) {
+      alert("Primero cargá un archivo Excel.");
       return;
     }
 
+    const codigo = document.getElementById("codigo").value.trim();
+
+    const item = datos.find(
+      (d) => String(d.codigo) === codigo
+    );
+
+    if (!item) {
+      alert("Código no encontrado.");
+      return;
+    }
+
+    // Completa los datos
     document.getElementById("descripcion").value = item.descripcion;
 
     document.getElementById("honorario-a").textContent = item.honorarioA;
