@@ -12,7 +12,6 @@ window.addEventListener("DOMContentLoaded", () => {
   function cargarExcel(input, callback) {
     input.addEventListener("change", (e) => {
       const file = e.target.files[0];
-
       if (!file) return;
 
       const reader = new FileReader();
@@ -20,9 +19,7 @@ window.addEventListener("DOMContentLoaded", () => {
       reader.onload = (event) => {
         const data = new Uint8Array(event.target.result);
 
-        const workbook = XLSX.read(data, {
-          type: "array",
-        });
+        const workbook = XLSX.read(data, { type: "array" });
 
         const hoja = workbook.Sheets[workbook.SheetNames[0]];
 
@@ -65,8 +62,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const codigo = document.getElementById("codigo").value.trim();
 
-    // IMPORTANTE:
-    // Acá usamos el nombre REAL de la columna del Excel
     const item = nomenclador.find(
       (d) => String(d["Código"]) === codigo
     );
@@ -76,13 +71,34 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Mostrar descripción
+    // ============================
+    // MOSTRAR DESCRIPCIÓN (INPUT)
+    // ============================
     document.getElementById("descripcion").value =
       item["Descripción"];
 
+    // ============================
+    // MOSTRAR INFO EN PANEL
+    // ============================
+    document.getElementById("info-descripcion").textContent =
+      item["Descripción"];
+
+    document.getElementById("info-forma").textContent =
+      item["Forma Fact."];
+
+    document.getElementById("info-pedido").textContent =
+      item["Pedido."];
+
+    document.getElementById("info-informe").textContent =
+      item["Informe."];
+
+    document.getElementById("info-cantidad").textContent =
+      item["Cant. Ayu."];
+
+    // ============================
+    // DEBUG
+    // ============================
     console.log("Práctica encontrada:", item);
     console.log("Valores cargados:", valores);
-
-    // Las multiplicaciones las hacemos en el siguiente paso.
   });
 });
