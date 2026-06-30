@@ -1,52 +1,74 @@
-let datos = [];
+let nomenclador = [];
+let valores = [];
 
 window.addEventListener("DOMContentLoaded", () => {
-  // Elementos del HTML
-  const inputFile = document.getElementById("facturacion");
+  const inputNomenclador = document.getElementById("nomenclador");
+  const inputValores = document.getElementById("valores");
   const btnBuscar = document.getElementById("btn-buscar");
 
   // ============================
-  // CARGAR EXCEL
+  // FUNCIÓN PARA LEER UN EXCEL
   // ============================
-  inputFile.addEventListener("change", (e) => {
-    const file = e.target.files[0];
+  function cargarExcel(input, callback) {
+    input.addEventListener("change", (e) => {
+      const file = e.target.files[0];
 
-    // Si el usuario cancela la selección
-    if (!file) return;
+      if (!file) return;
 
-    const reader = new FileReader();
+      const reader = new FileReader();
 
-    reader.onload = (event) => {
-      const data = new Uint8Array(event.target.result);
+      reader.onload = (event) => {
+        const data = new Uint8Array(event.target.result);
 
-      const workbook = XLSX.read(data, {
-        type: "array",
-      });
+        const workbook = XLSX.read(data, {
+          type: "array",
+        });
 
-      const hoja = workbook.Sheets[workbook.SheetNames[0]];
+        const hoja = workbook.Sheets[workbook.SheetNames[0]];
 
-      datos = XLSX.utils.sheet_to_json(hoja);
+        callback(XLSX.utils.sheet_to_json(hoja));
+      };
 
-      console.log("Excel cargado:", datos);
-    };
+      reader.readAsArrayBuffer(file);
+    });
+  }
 
-    reader.readAsArrayBuffer(file);
+  // ============================
+  // CARGAR NOMENCLADOR
+  // ============================
+  cargarExcel(inputNomenclador, (datos) => {
+    nomenclador = datos;
+    console.log("Nomenclador:", nomenclador);
+  });
+
+  // ============================
+  // CARGAR VALORES
+  // ============================
+  cargarExcel(inputValores, (datos) => {
+    valores = datos;
+    console.log("Valores:", valores);
   });
 
   // ============================
   // BUSCAR PRESTACIÓN
   // ============================
   btnBuscar.addEventListener("click", () => {
-    // Verifica que se haya cargado un Excel
-    if (datos.length === 0) {
-      alert("Primero cargá un archivo Excel.");
+    if (nomenclador.length === 0) {
+      alert("Primero cargá el nomenclador.");
+      return;
+    }
+
+    if (valores.length === 0) {
+      alert("Primero cargá la tabla de valores.");
       return;
     }
 
     const codigo = document.getElementById("codigo").value.trim();
 
-    const item = datos.find(
-      (d) => String(d.codigo) === codigo
+    // IMPORTANTE:
+    // Acá usamos el nombre REAL de la columna del Excel
+    const item = nomenclador.find(
+      (d) => String(d["Código"]) === codigo
     );
 
     if (!item) {
@@ -54,15 +76,13 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Completa los datos
-    document.getElementById("descripcion").value = item.descripcion;
+    // Mostrar descripción
+    document.getElementById("descripcion").value =
+      item["Descripción"];
 
-    document.getElementById("honorario-a").textContent = item.honorarioA;
-    document.getElementById("honorario-b").textContent = item.honorarioB;
-    document.getElementById("honorario-c").textContent = item.honorarioC;
+    console.log("Práctica encontrada:", item);
+    console.log("Valores cargados:", valores);
 
-    document.getElementById("gastos-a").textContent = item.gastoA;
-    document.getElementById("gastos-b").textContent = item.gastoB;
-    document.getElementById("gastos-c").textContent = item.gastoC;
+    // Las multiplicaciones las hacemos en el siguiente paso.
   });
 });
