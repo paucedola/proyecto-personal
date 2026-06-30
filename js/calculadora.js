@@ -1,5 +1,5 @@
 let nomenclador = [];
-let valoresch = [];
+let valores = [];
 
 window.addEventListener("DOMContentLoaded", () => {
   const inputNomenclador = document.getElementById("nomenclador");
